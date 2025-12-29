@@ -13,6 +13,7 @@ function mulaiAnalisis() {
 
     const REPEAT = 500;
 
+    //Iteratif
     let startIteratif = performance.now();
     let sumIteratif = 0;
 
@@ -27,6 +28,7 @@ function mulaiAnalisis() {
     let endIteratif = performance.now();
     let waktuIteratif = endIteratif - startIteratif;
 
+    //Rekursif
     function sumRekursif(arr, n) {
         if (n === 0) return 0;
         return arr[n - 1] + sumRekursif(arr, n - 1);
@@ -182,6 +184,7 @@ function isiTabel(n, waktuIteratif, waktuRekursif) {
 
     tbody.appendChild(row);
 }
+
 
 
 
