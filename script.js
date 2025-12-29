@@ -55,8 +55,12 @@ function mulaiAnalisis() {
     document.getElementById("rataRekursif").innerText =
         "Rata-rata Rekursif: " + rataRekursif.toFixed(2);
 
-    document.getElementById("kesimpulan").innerText =
-        "Kesimpulan: Algoritma iteratif lebih efisien dibandingkan algoritma rekursif karena tidak memiliki overhead pemanggilan fungsi.";
+    let kesimpulan = "";
+    if (waktuIteratif < waktuRekursif) {
+    kesimpulan = "Algoritma iteratif lebih efisien dalam waktu eksekusi karena tidak memiliki overhead pemanggilan fungsi.";
+    } else {
+    kesimpulan = "Algoritma rekursif membutuhkan waktu eksekusi lebih besar akibat overhead pemanggilan fungsi berulang.";  
+    }
 
     gambarGrafik(waktuIteratif, waktuRekursif);
     isiTabel(n, waktuIteratif, waktuRekursif);
@@ -171,3 +175,4 @@ function isiTabel(n, waktuIteratif, waktuRekursif) {
 
     tbody.appendChild(row);
 }
+
