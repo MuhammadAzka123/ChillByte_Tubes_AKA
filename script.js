@@ -56,10 +56,15 @@ function mulaiAnalisis() {
         "Rata-rata Rekursif: " + rataRekursif.toFixed(2);
 
     let kesimpulan = "";
+
     if (waktuIteratif < waktuRekursif) {
     kesimpulan = "Algoritma iteratif lebih efisien dalam waktu eksekusi karena tidak memiliki overhead pemanggilan fungsi.";
-    } else {
-    kesimpulan = "Algoritma rekursif membutuhkan waktu eksekusi lebih besar akibat overhead pemanggilan fungsi berulang.";  
+    } 
+    else if (waktuIteratif > waktuRekursif) {
+    kesimpulan = "Algoritma rekursif membutuhkan waktu eksekusi lebih besar akibat overhead pemanggilan fungsi berulang.";
+    } 
+    else {
+    kesimpulan = "Kedua algoritma memiliki waktu eksekusi yang relatif sama pada ukuran data ini.";
     }
 
     document.getElementById("kesimpulan").innerText = "Kesimpulan: " + kesimpulan;
@@ -177,5 +182,6 @@ function isiTabel(n, waktuIteratif, waktuRekursif) {
 
     tbody.appendChild(row);
 }
+
 
 
