@@ -62,6 +62,8 @@ function mulaiAnalisis() {
     kesimpulan = "Algoritma rekursif membutuhkan waktu eksekusi lebih besar akibat overhead pemanggilan fungsi berulang.";  
     }
 
+    document.getElementById("kesimpulan").innerText = "Kesimpulan: " + kesimpulan;
+
     gambarGrafik(waktuIteratif, waktuRekursif);
     isiTabel(n, waktuIteratif, waktuRekursif);
 }
@@ -175,4 +177,5 @@ function isiTabel(n, waktuIteratif, waktuRekursif) {
 
     tbody.appendChild(row);
 }
+
 
