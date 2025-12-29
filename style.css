@@ -1,88 +1,91 @@
 body {
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(
-        90deg,
-        #e6ebf1 0%,
-        #eef2f7 50%,
-        #e6ebf1 100%
-    );
-    margin: 0;
-    padding: 0;
+    background: #f3f4f6;
+    font-family: Arial, sans-serif;
 }
 
 .container {
-    width: 520px;
-    margin: 60px auto;
-    background-color: #f0f6ff;
+    max-width: 700px;
+    margin: 30px auto;
+    background: #f0f6ff;
     padding: 28px;
-    border-radius: 12px;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
 }
 
+
 h1 {
-    text-align: center;
-    color: #0b5ed7;
-    margin-bottom: 6px;
+    color: #0f5bd9;
+    font-size: 32px;
 }
 
 h2 {
-    text-align: center;
     color: #444;
-    margin-bottom: 18px;
+    margin-bottom: 10px;
 }
 
 .desc {
-    font-size: 14px;
-    text-align: justify;
-    margin-bottom: 22px;
     color: #555;
+    margin-bottom: 20px;
 }
 
 label {
     font-weight: bold;
-    color: #333;
 }
 
 input {
     width: 100%;
-    padding: 10px;
-    margin-top: 6px;
-    margin-bottom: 18px;
+    padding: 12px;
+    margin: 10px 0 15px;
+    border-radius: 8px;
     border: 1px solid #cbd5e1;
-    border-radius: 6px;
-    font-size: 14px;
 }
 
 button {
     width: 100%;
-    padding: 12px;
-    background-color: #0b5ed7;
-    color: #ffffff;
+    padding: 14px;
+    background: #0f5bd9;
+    color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
     cursor: pointer;
 }
 
 button:hover {
-    background-color: #084298;
+    background: #0c4bb8;
 }
 
 .result {
-    margin-top: 24px;
-    background-color: #ffffff;
-    padding: 18px;
+    margin-top: 25px;
+    background: white;
+    padding: 20px;
+    border-left: 5px solid #0f5bd9;
     border-radius: 10px;
-    border-left: 6px solid #0b5ed7;
 }
 
-.result h3 {
-    margin-top: 0;
-    color: #0b5ed7;
+.chart-box {
+    margin-top: 30px;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
 }
 
-.result p {
-    margin: 6px 0;
-    color: #333;
-    font-size: 14px;
+.table {
+    width: 100%;
+    margin-top: 25px;
+    border-collapse: collapse;
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
 }
+
+.table th, .table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.table th {
+    background: #e0ebff;
+}
+
