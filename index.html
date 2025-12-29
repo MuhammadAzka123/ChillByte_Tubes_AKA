@@ -24,14 +24,31 @@
 
     <div class="result">
         <h3>Hasil Analisis</h3>
-        <p id="iteratifResult">Iteratif: -</p>
-        <p id="rekursifResult">Rekursif: -</p>
+        <p id="iteratifResult">Waktu Eksekusi Iteratif: -</p>
+        <p id="rekursifResult">Waktu Eksekusi Rekursif: -</p>
         <p id="rataIteratif">Rata-rata Iteratif: -</p>
         <p id="rataRekursif">Rata-rata Rekursif: -</p>
         <p id="kesimpulan">Kesimpulan: -</p>
     </div>
+
+    <div class="chart-box">
+        <h3>Grafik Perbandingan Running Time</h3>
+        <canvas id="runtimeChart" width="600" height="300"></canvas>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>n</th>
+                <th>Iteratif (ms)</th>
+                <th>Rekursif (ms)</th>
+            </tr>
+        </thead>
+        <tbody id="tabelData"></tbody>
+    </table>
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
+
