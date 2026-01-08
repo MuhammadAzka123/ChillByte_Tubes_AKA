@@ -1,3 +1,6 @@
+let data = [];
+let tabelDataset = [];
+
 function mulaiAnalisis() {
     const n = parseInt(document.getElementById("jumlahData").value);
 
@@ -6,9 +9,9 @@ function mulaiAnalisis() {
         return;
     }
 
-    let data = [];
+    data = [];
     for (let i = 0; i < n; i++) {
-        data.push(Math.floor(Math.random() * 1000) + 1);
+    data.push(Math.floor(Math.random() * 1000) + 1);
     }
 
     const REPEAT = 500;
@@ -29,33 +32,36 @@ function mulaiAnalisis() {
     let waktuIteratif = endIteratif - startIteratif;
 
     //Rekursif
-    function sumRekursif(arr, n) {
-        if (n === 0) return 0;
-        return arr[n - 1] + sumRekursif(arr, n - 1);
+    let waktuRekursif = 0;
+    let rataRekursif = 0;
+    let errorRekursif = null;
+
+    try {
+        let startRekursif = performance.now();
+        let sumR = 0;
+
+        for (let r = 0; r < REPEAT; r++) {
+            sumR = sumRekursif(globalData, globalData.length);
+        }
+
+        let endRekursif = performance.now();
+        waktuRekursif = endRekursif - startRekursif;
+        rataRekursif = sumR / globalData.length;
+    } catch (e) {
+        errorRekursif = e.message;
     }
 
-    let startRekursif = performance.now();
-    let sumR = 0;
-
-    for (let r = 0; r < REPEAT; r++) {
-        sumR = sumRekursif(data, data.length);
-    }
-
-    let rataRekursif = sumR / data.length;
-    let endRekursif = performance.now();
-    let waktuRekursif = endRekursif - startRekursif;
-
-    document.getElementById("iteratifResult").innerText =
-        "Waktu Eksekusi Iteratif: " + waktuIteratif.toFixed(3) + " ms";
-
+    if (errorRekursif) {
+    document.getElementById("rekursifResult").innerText =
+        "Waktu Eksekusi Rekursif: GAGAL (Stack Overflow)";
+    document.getElementById("rataRekursif").innerText =
+        "Rata-rata Rekursif: -";
+    } else {
     document.getElementById("rekursifResult").innerText =
         "Waktu Eksekusi Rekursif: " + waktuRekursif.toFixed(3) + " ms";
-
-    document.getElementById("rataIteratif").innerText =
-        "Rata-rata Iteratif: " + rataIteratif.toFixed(2);
-
     document.getElementById("rataRekursif").innerText =
         "Rata-rata Rekursif: " + rataRekursif.toFixed(2);
+    }
 
     let kesimpulan = "";
 
@@ -73,6 +79,7 @@ function mulaiAnalisis() {
 
     gambarGrafik(waktuIteratif, waktuRekursif);
     isiTabel(n, waktuIteratif, waktuRekursif);
+    tabelDataset.push({n:  n,iteratif: waktuIteratif,rekursif: waktuRekursif});
 }
 
 function gambarGrafik(wIteratif, wRekursif) {
@@ -185,6 +192,74 @@ function isiTabel(n, waktuIteratif, waktuRekursif) {
     tbody.appendChild(row);
 }
 
+//BubbleSort
+function BubbleSort() {
+    if (tabelDataset.length === 0) {
+        alert("Tabel masih kosong!");
+        return;
+    }
+    let arr = [...tabelDataset];
+    let start = performance.now();
 
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - i - 1; j++) {
+            if (arr[j].iteratif > arr[j + 1].iteratif) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+    }
+    let end = performance.now();
 
+    document.getElementById("sortResult").innerText =
+        "Hasil Sorting (Iteratif): " +
+        arr.map(d => `n=${d.n} → ${d.iteratif.toFixed(2)} ms`).join(" | ");
 
+    document.getElementById("sortTime").innerText =
+        "Waktu Sorting: " + (end - start).toFixed(3) + " ms";
+}
+
+//LinearSearch
+function LinearSearch() {
+    if (tabelDataset.length === 0) {
+        alert("Tabel masih kosong!");
+        return;
+    }
+
+    const target = parseInt(document.getElementById("nilaiCari").value);
+    if (isNaN(target)) {
+        alert("Masukkan nilai n yang dicari!");
+        return;
+    }
+
+    const REPEAT = 1000;
+    let start = performance.now();
+    let hasil = null;
+    let found = false;
+
+    for (let r = 0; r < REPEAT; r++) {
+        found = false;
+        hasil = null;
+
+        for (let i = 0; i < tabelDataset.length; i++) {
+            if (tabelDataset[i].n === target) {
+                hasil = tabelDataset[i];
+                found = true;
+                break;
+            }
+        }
+    }
+
+    let end = performance.now();
+    let avg = (end - start) / REPEAT;
+
+    if (found) {
+        document.getElementById("searchResult").innerText =
+            `Data ditemukan → n=${hasil.n}, Iteratif=${hasil.iteratif.toFixed(2)} ms, Rekursif=${hasil.rekursif.toFixed(2)} ms`;
+    } else {
+        document.getElementById("searchResult").innerText =
+            "Data tidak ditemukan di tabel";
+    }
+
+    document.getElementById("searchTime").innerText =
+        "Waktu Pencarian (rata-rata): " + avg.toFixed(3) + " ms";
+}
